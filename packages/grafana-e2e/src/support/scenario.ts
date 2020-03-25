@@ -32,13 +32,11 @@ export const e2eScenario = ({
       });
 
       afterEach(() => {
-        e2e.context().get('lastAddedDataSource').then(lastAddedDataSource => {
+        e2e.getScenarioContext().then(({ lastAddedDashboardUid, lastAddedDataSource }) => {
           if (lastAddedDataSource) {
             e2e.flows.deleteDataSource(lastAddedDataSource);
           }
-        });
 
-        e2e.context().get('lastAddedDashboardUid').then(lastAddedDashboardUid => {
           if (lastAddedDashboardUid) {
             e2e.flows.deleteDashboard(lastAddedDashboardUid);
           }

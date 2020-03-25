@@ -8,10 +8,10 @@ export const addDashboard = () => {
   const dashboardTitle = e2e.flows.saveNewDashboard();
   e2e().logToConsole('Added dashboard with title:', dashboardTitle);
 
-  e2e()
-    .url()
-    .then((url: string) => {
-      e2e.context().set('lastAddedDashboard', dashboardTitle);
-      e2e.context().set('lastAddedDashboardUid', Url.getDashboardUid(url));
+  e2e().url().then((url: string) => {
+    e2e.setScenarioContext({
+      lastAddedDashboard: dashboardTitle,
+      lastAddedDashboardUid: Url.getDashboardUid(url),
     });
+  });
 };
